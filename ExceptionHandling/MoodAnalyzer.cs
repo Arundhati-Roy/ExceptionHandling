@@ -8,6 +8,10 @@ namespace ExceptionHandling
     public class MoodAnalyzer
     {
         private string message;
+        /*public MoodAnalyzer()
+        {
+            
+        }*/
         public MoodAnalyzer(string message)
         {
             this.message = message;
@@ -55,9 +59,11 @@ namespace ExceptionHandling
                 throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NULL_MESSAGE, "Mood should not be null");
             }
         }
+       
         public static void Main()
         {
             Console.WriteLine("Exception Handling");
+            ReflectionCust.Test();
         }
     }
 }

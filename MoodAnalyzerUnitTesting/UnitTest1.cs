@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ExceptionHandling;
 using System.Data;
+using System;
 
 namespace MoodAnalyzerUnitTesting
 {
@@ -76,6 +77,52 @@ namespace MoodAnalyzerUnitTesting
             {
                 Assert.AreEqual("Mood should not be null", e.Message);
             }
+        }
+        [TestMethod]
+        public void TestMethod5()
+        {
+            string message = null;
+            object expected = new MoodAnalyzer(message);
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyse("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+            expected.Equals(obj);
+        }
+        [TestMethod]
+        public void TestMethod6()
+        {
+            try
+            {
+                string message = null;
+                object expected = new MoodAnalyzer(message);
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyse("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+                expected.Equals(obj);
+            }
+            catch (MoodAnalyzerCustomException e)
+            {
+                Assert.AreEqual("No such constructor", e.Message);
+            }
+        }
+        [TestMethod]
+        public void TestMethod7()
+        {
+            try
+            {
+                string message = null;
+                object expected = new MoodAnalyzer(message);
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyseWithoutAssembly("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+                expected.Equals(obj);
+            }
+            catch (MoodAnalyzerCustomException e)
+            {
+                Assert.AreEqual("No such constructor", e.Message);
+            }
+        }
+        [TestMethod]
+        public void TestMethod8()
+        {
+            string message = "HAPPY";
+            object expected = new MoodAnalyzer(message);
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyseUsingParameter("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+            expected.Equals(obj);
         }
     }
 }

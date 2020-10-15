@@ -9,7 +9,7 @@ namespace ExceptionHandling
     {
         public static void Test()
         {
-            Type type = Type.GetType("ExceptionHandling.MoodAnalyzer");
+            Type type = Type.GetType("ExceptionHandling.MoodAnalyzerReflection");
             Console.WriteLine("Full Name:{0}", type.FullName);
             Console.WriteLine("Class Name:{0}", type.Name);
             Console.WriteLine("Methods in Customer class");

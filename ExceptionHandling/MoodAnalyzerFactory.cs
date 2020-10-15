@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ExceptionHandling
 {
-    public class MoodAnalyzerFactory
+    public class MoodAnalyzerReflection
     {
         public static object CreateMoodAnalyse(string className, string constructorName)
         {
@@ -45,7 +45,7 @@ namespace ExceptionHandling
                 {
                     //Assembly executing = Assembly.GetExecutingAssembly();
                     //MoodAnalyzerFactory mf = new MoodAnalyzerFactory();
-                    Type moodAnalyseType = typeof(MoodAnalyzerFactory);
+                    Type moodAnalyseType = typeof(MoodAnalyzerReflection);
                     return Activator.CreateInstance(moodAnalyseType);
                 }
                 catch (ArgumentNullException)

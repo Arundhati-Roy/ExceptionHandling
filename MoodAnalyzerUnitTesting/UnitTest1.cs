@@ -83,7 +83,7 @@ namespace MoodAnalyzerUnitTesting
         {
             string message = null;
             object expected = new MoodAnalyzer(message);
-            object obj = MoodAnalyzerFactory.CreateMoodAnalyse("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+            object obj = MoodAnalyzerReflection.CreateMoodAnalyse("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
             expected.Equals(obj);
         }
         [TestMethod]
@@ -93,7 +93,7 @@ namespace MoodAnalyzerUnitTesting
             {
                 string message = null;
                 object expected = new MoodAnalyzer(message);
-                object obj = MoodAnalyzerFactory.CreateMoodAnalyse("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+                object obj = MoodAnalyzerReflection.CreateMoodAnalyse("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
                 expected.Equals(obj);
             }
             catch (MoodAnalyzerCustomException e)
@@ -108,7 +108,7 @@ namespace MoodAnalyzerUnitTesting
             {
                 string message = null;
                 object expected = new MoodAnalyzer(message);
-                object obj = MoodAnalyzerFactory.CreateMoodAnalyseWithoutAssembly("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+                object obj = MoodAnalyzerReflection.CreateMoodAnalyseWithoutAssembly("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
                 expected.Equals(obj);
             }
             catch (MoodAnalyzerCustomException e)
@@ -121,8 +121,25 @@ namespace MoodAnalyzerUnitTesting
         {
             string message = "HAPPY";
             object expected = new MoodAnalyzer(message);
-            object obj = MoodAnalyzerFactory.CreateMoodAnalyseUsingParameter("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
+            object obj = MoodAnalyzerReflection.CreateMoodAnalyseUsingParameter("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
             expected.Equals(obj);
         }
+        [TestMethod]
+        public void TestMethod9_UC6()
+        {
+            object actual = null;
+            object expected = null;
+            try
+            {
+                expected = "Happy";
+                actual = MoodAnalyzerReflection.InvokeAnalyseMethod("Analyse");
+            }
+            catch(MoodAnalyzerCustomException e)
+            {
+                expected.Equals(actual);
+            }
+            
+        }
+
     }
 }

@@ -124,7 +124,7 @@ namespace MoodAnalyzerUnitTesting
             object obj = MoodAnalyzerReflection.CreateMoodAnalyseUsingParameter("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
             expected.Equals(obj);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void TestMethod9_UC6()
         {
             object actual = null;
@@ -139,7 +139,7 @@ namespace MoodAnalyzerUnitTesting
                 expected.Equals(actual);
             }
             
-        }
+        }*/
 
     }
 }

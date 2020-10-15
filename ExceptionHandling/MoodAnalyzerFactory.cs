@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -24,7 +24,7 @@ namespace ExceptionHandling
                 {
                     throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_CLASS, "No such class");
                 }
-                catch(MissingMethodException)
+                catch (MissingMethodException)
                 {
                     throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "No such constructor");
                 }
@@ -52,10 +52,10 @@ namespace ExceptionHandling
                 {
                     throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_CLASS, "No such class");
                 }
-                /*catch (MissingMethodException)
+                *//*catch (MissingMethodException)
                 {
                     throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "No such constructor");
-                }*/
+                }*//*
             }
             else
             {
@@ -85,7 +85,25 @@ namespace ExceptionHandling
                 throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_METHOD, "No such method");
             }
         }
+        public static object InvokeAnalyseMethod(string methodName, string method)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyzer);
+                object moodAnalyser = MoodAnalyzerReflection.CreateMoodAnalyse();
+                MethodInfo methodInfo = type.GetMethod(methodName);
+                object method = methodInfo.Invoke(moodAnalyser, null);
+                return method.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_METHOD, "No such method");
+            }
+
+
+        }
 
     }
 }
 
+*/

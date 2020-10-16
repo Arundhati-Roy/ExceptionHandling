@@ -121,8 +121,70 @@ namespace MoodAnalyzerUnitTesting
         {
             string message = "HAPPY";
             object expected = new MoodAnalyzer(message);
-            object obj = MoodAnalyzerFactory.CreateMoodAnalyseUsingParameter("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer");
-            expected.Equals(obj);
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyseUsingParameter("ExceptionHandling.MoodAnalyzer", "MoodAnalyzer","HAPPY");
+            expected.GetType().Equals(obj.GetType());
+        }
+
+        [TestMethod]
+        public void GivenHappyMoodReturnHappy()
+        {
+            string expected = "HAPPY";
+            string mood = MoodAnalyzerFactory.InvokeAnalyseMood("HAPPY", "AnalyseMood");
+            Assert.AreEqual(expected, mood);
+        }
+        /// <summary>
+        /// TC 7.1 When given proper fieldName and a mood message for happy mood then should return HAPPY
+        /// </summary>
+        [TestMethod]
+        public void Given_HappyMessage_withReflector_ReturnHappy()
+        {
+            object mood = MoodAnalyzerFactory.SetField("HAPPY mood", "message");
+            Assert.AreEqual("HAPPY", mood);
+        }
+        [TestMethod]
+        public void ChangeMoodDynamicallyForValidFieldName()
+        {
+            // ACT
+            object actual = MoodAnalyzerFactory.SetField("I am happy today", "message");
+
+            // Assert
+            Assert.AreEqual("HAPPY", actual);
+        }
+
+        /// <summary>
+        ///  TC 7.2 When given wrong fieldName and a happy mood message then should throw exception
+        /// </summary>
+        [TestMethod]
+        public void ChangeMoodDynamicallyInValid()
+        {
+            try
+            {
+                // ACT
+                object actual = MoodAnalyzerFactory.SetField("I am in happy mood today", "InvalidField");
+            }
+            catch (MoodAnalyzerCustomException exception)
+            {
+                // Assert
+                Assert.AreEqual("Field is not found", exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// TC 7.3 When given correct fieldName and passing a null mood message then throw error that Mood should not be NULL
+        /// </summary>
+        [TestMethod]
+        public void ChangeMoodDynamicallySetNull()
+        {
+            try
+            {
+                // ACT
+                object actual = MoodAnalyzerFactory.SetField(null, "message");
+            }
+            catch (MoodAnalyzerCustomException exception)
+            {
+                // Assert
+                Assert.AreEqual("Field is not found", exception.Message);
+            }
         }
     }
 }

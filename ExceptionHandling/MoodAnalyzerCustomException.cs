@@ -10,7 +10,7 @@ namespace ExceptionHandling
         {
             NULL_MESSAGE, EMPTY_MESSAGE,
             NO_SUCH_CLASS,NO_SUCH_METHOD,
-            NO_SUCH_CONSTRUCTOR
+            NO_SUCH_CONSTRUCTOR,NO_SUCH_FIELD
         }
         public readonly ExceptionType type;
         public MoodAnalyzerCustomException(ExceptionType Type, string message):base(message)

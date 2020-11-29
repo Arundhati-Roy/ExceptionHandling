@@ -7,10 +7,10 @@ namespace ExceptionHandling
 {
     public class MoodAnalyzer
     {
-        private string message;
+        public string message;
         public MoodAnalyzer()
         {
-
+            this.message = null;
         }
         public MoodAnalyzer(string message)
         {

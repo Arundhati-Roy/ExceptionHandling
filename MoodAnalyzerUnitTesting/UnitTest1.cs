@@ -135,17 +135,12 @@ namespace MoodAnalyzerUnitTesting
         /// <summary>
         /// TC 7.1 When given proper fieldName and a mood message for happy mood then should return HAPPY
         /// </summary>
-        [TestMethod]
-        public void Given_HappyMessage_withReflector_ReturnHappy()
-        {
-            object mood = MoodAnalyzerFactory.SetField("HAPPY mood", "message");
-            Assert.AreEqual("HAPPY", mood);
-        }
+        
         [TestMethod]
         public void ChangeMoodDynamicallyForValidFieldName()
         {
             // ACT
-            object actual = MoodAnalyzerFactory.SetField("I am happy today", "message");
+            string actual = MoodAnalyzerFactory.SetField("HAPPY", "message");
 
             // Assert
             Assert.AreEqual("HAPPY", actual);
@@ -160,7 +155,7 @@ namespace MoodAnalyzerUnitTesting
             try
             {
                 // ACT
-                object actual = MoodAnalyzerFactory.SetField("I am in happy mood today", "InvalidField");
+                string actual = MoodAnalyzerFactory.SetField("I am in happy mood today", "InvalidField");
             }
             catch (MoodAnalyzerCustomException exception)
             {
@@ -178,12 +173,12 @@ namespace MoodAnalyzerUnitTesting
             try
             {
                 // ACT
-                object actual = MoodAnalyzerFactory.SetField(null, "message");
+                string actual = MoodAnalyzerFactory.SetField(null, "message");
             }
             catch (MoodAnalyzerCustomException exception)
             {
                 // Assert
-                Assert.AreEqual("Field is not found", exception.Message);
+                Assert.AreEqual("Mood should not be NULL", exception.Message);
             }
         }
     }
